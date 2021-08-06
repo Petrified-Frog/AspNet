@@ -1,0 +1,43 @@
+﻿@page "/customers/create"
+
+<h1>Create Customer</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="@customerModel" OnValidSubmit="@HandleValidSubmitAsync">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+
+            <label class="control-label">First Name:</label>
+            <InputText id="firstName" @bind-Value="customerModel.FirstName" />
+            <span class="text-danger"></span>
+
+            <div class="form-group">
+                <label class="control-label">Last Name:</label>
+                <InputText id="lastName" @bind-Value="customerModel.LastName" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">E-mail:</label>
+                <InputText id="email" @bind-Value="customerModel.Email" />
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" href="Customers">Create</button>           
+
+        </EditForm>    
+        <NavLink class="nav-link" href="Customers">
+            <span class="oi oi-arrow-left" aria-hidden="true"></span> Back
+        </NavLink>
+    </div>
+</div>
+
+@code {
+    private Customer customerModel = new();
+    private async Task HandleValidSubmitAsync()
+    {
+        await Http.PostAsJsonAsync("api/customers", customerModel);
+        customerModel = new();
+    }
+}
