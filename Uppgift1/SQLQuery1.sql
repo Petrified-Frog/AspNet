@@ -13,3 +13,5 @@ CREATE TABLE Customers(
 	LastName nvarchar(50) not null,
 	Email varchar(50) not null unique
 )
+
+Scaffold-DbContext "[connectionstring]" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -Context SqlContext -OutputDir Data/Entities

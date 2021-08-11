@@ -33,5 +33,8 @@ namespace Uppgift3.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(20)")]
         public string Phone { get; set; }
+
+        [Column(TypeName = "nvarchar(10)")]
+        public string Role { get; set; }
     }
 }

@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Uppgift3.Data;
+using Uppgift3.Areas.Identity.Data.AuthDbContext;
 
 namespace Uppgift3
 {
@@ -23,8 +26,12 @@ namespace Uppgift3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<SqlContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<cs>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("cs")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
